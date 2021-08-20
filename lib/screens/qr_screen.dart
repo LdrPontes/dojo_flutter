@@ -10,8 +10,9 @@ class QrcodeScreen extends StatefulWidget {
 
 class _QrcodeScreenState extends State<QrcodeScreen> {
   String? _link;
+  final textController = TextEditingController();
 
-  void _createQrCode(String link) {
+  void createQrCode(String link) {
     setState(() {
       _link = link;
     });
@@ -21,29 +22,38 @@ class _QrcodeScreenState extends State<QrcodeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.4,
-              child: ElevatedButton(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: textController,
+                autofocus: false,
+                decoration: InputDecoration(
+                  hintText: 'Insira seu link',
+                  labelText: 'Link',
+                  border: OutlineInputBorder(),
+                  contentPadding: const EdgeInsets.all(16.0),
+                ),
+              ),
+              ElevatedButton(
                 onPressed: () {
-                  _createQrCode('teste');
+                  createQrCode(textController.text);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "Create QRCode",
                     style: TextStyle(
-                      color: Colors.lime,
                       fontSize: 20.0,
                     ),
                   ),
                 ),
               ),
-            ),
-            if (this._link != null) QrCode(link: this._link!)
-          ],
+              if (this._link != null) QrCode(link: this._link!)
+            ],
+          ),
         ),
       ),
     );
