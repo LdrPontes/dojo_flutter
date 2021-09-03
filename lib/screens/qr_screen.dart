@@ -1,3 +1,4 @@
+import 'package:dojo/screens/read_screen.dart';
 import 'package:dojo/widgets/qrcode.dart';
 import 'package:flutter/material.dart';
 
@@ -45,6 +46,21 @@ class _QrcodeScreenState extends State<QrcodeScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "Create QRCode",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (ctx) => QRViewExample()));
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Read QRCode",
                     style: TextStyle(
                       fontSize: 20.0,
                     ),

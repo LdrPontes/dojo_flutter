@@ -8,7 +8,8 @@ import 'package:mockito/mockito.dart';
 import 'base_test_container.dart';
 
 void main() {
-  testWidgets('Test if the screen has two buttons', (WidgetTester tester) async {
+  testWidgets('Test if the screen has two buttons',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       BaseTestContainer(
         child: QrcodeScreen(),
@@ -18,6 +19,7 @@ void main() {
     await tester.pump();
 
     expect(find.text('Create QRCode'), findsOneWidget);
+    expect(find.text('Read QRCode'), findsOneWidget);
 
     await tester.tap(find.text('Create QRCode'));
     await tester.pump();
@@ -25,7 +27,8 @@ void main() {
     expect(find.byType(QrCode), findsOneWidget);
   });
 
-  testWidgets('Test if the screen has a TextField', (WidgetTester tester) async {
+  testWidgets('Test if the screen has a TextField',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       BaseTestContainer(
         child: QrcodeScreen(),
@@ -37,7 +40,8 @@ void main() {
     expect(find.byType(TextField), findsOneWidget);
   });
 
-  testWidgets('Test if the QRCode is generated with the content provided', (WidgetTester tester) async {
+  testWidgets('Test if the QRCode is generated with the content provided',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       BaseTestContainer(
         child: QrcodeScreen(),
